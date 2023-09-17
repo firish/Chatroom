@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask import Flask
 from flask_cors import CORS
 
-from create_tables import User, Message, Like  
+from create_tables import User, Message, Like, Constants 
 
 app = Flask(__name__)
 CORS(app)
@@ -40,6 +40,12 @@ def create_mock_data():
     # Add the upvote to the database
     db.session.add(upvote)
     db.session.commit()
+
+    constants_row = Constants(reload=False)
+    db.session.add(constants_row)
+    db.session.commit()
+
+    print("Constants initialized!")
 
     print("Mock data added successfully!")
 

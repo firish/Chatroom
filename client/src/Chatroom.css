@@ -73,11 +73,12 @@
     padding: 10px;
     border: 1px solid #e1e1e1;
     margin-bottom: 10px;
-    display: flex;               /* Make message a flex container */
+    /* display: flex;               Make message a flex container */
     align-items: center;         /* Center items vertically */
 }
 
 .sender-message {
+    margin-right: 10px;
     justify-content: flex-end;
     background-color: #4CAF50; /* Sender color */
     color: white;
@@ -143,6 +144,33 @@
     justify-content: center;
     align-items: center;
     font-size: 1.2em;
+}
+
+.like-value-box {
+    color: #333;
+    border: 1px solid #ddd;  
+    padding: 4px 8px;      
+    border-radius: 4px;     
+    display: inline-block;  
+    margin: 0 5px;        
+    font-size: 0.9rem;      
+    background-color: #f9f9f9; 
+}
+
+
+.active-vote {
+    color: red;
+    background-color: red;
+}
+
+.vote-buttons button.active-upvote {
+    color: white; /* This will be the color of the arrow */
+    background-color: lightgreen;
+}
+
+.vote-buttons button.active-downvote {
+    color: white; /* This will be the color of the arrow */
+    background-color: lightcoral;
 }
 
 

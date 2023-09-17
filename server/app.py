@@ -40,6 +40,11 @@ class Like(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     value = db.Column(db.SmallInteger, default=0)  # -1 for downvote, 1 for upvote, 0 for neutral
 
+class Constants(db.Model):
+    __tablename__ = 'constants'
+
+    id = db.Column(db.Integer, primary_key=True)
+    reload = db.Column(db.Boolean, default=False)
 
 
 @app.route('/signup', methods=['POST'])
@@ -87,7 +92,10 @@ def upvote_message():
         new_like = Like(user_id=user_id, message_id=message_id, value=1)
         db.session.add(new_like)
     else:
-        existing_like.value = 1
+        if existing_like.value == 0:
+            existing_like.value = 1
+        else:
+            existing_like.value = 0
 
     db.session.commit()
     return jsonify({"message": "Message upvoted!"})
@@ -104,10 +112,14 @@ def downvote_message():
         new_like = Like(user_id=user_id, message_id=message_id, value=-1)
         db.session.add(new_like)
     else:
-        existing_like.value = -1
+        if existing_like.value == 0:
+            existing_like.value = -1
+        else:
+            existing_like.value = 0
 
     db.session.commit()
     return jsonify({"message": "Message downvoted!"})
+
 
 
 @app.route('/get-username', methods=['POST'])
@@ -179,6 +191,40 @@ def get_messages():
 
     return jsonify(formatted_messages)
 
+
+@app.route('/get_reload', methods=['GET'])
+def get_reload():
+    constant_row = Constants.query.first()
+    if not constant_row:
+        return jsonify({"error": "No row found in Constants table."}), 400
+    return jsonify({"reload": constant_row.reload})
+
+
+@app.route('/flip_reload', methods=['POST'])
+def flip_reload():
+    constant_row = Constants.query.first()
+    if not constant_row:
+        return jsonify({"error": "No row found in Constants table."}), 400
+
+    constant_row.reload = not constant_row.reload
+    db.session.commit()
+    return jsonify({"message": "Reload state flipped successfully.", "new_state": constant_row.reload})
+
+
+@app.route('/get_likes', methods=['GET'])
+def get_likes():
+    message_id = request.args.get('message_id')
+    
+    if not message_id:
+        return jsonify({"error": "message_id is required!"}), 400
+
+    # Fetching likes for the given message
+    likes = Like.query.filter_by(message_id=message_id).all()
+
+    # Calculate the total like value for the message
+    like_value = sum([like.value for like in likes])
+
+    return jsonify({"message_id": message_id, "like_value": like_value})
 
 
 if __name__ == "__main__":

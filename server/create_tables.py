@@ -45,7 +45,14 @@ class Like(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     value = db.Column(db.SmallInteger, default=0)  # -1 for downvote, 1 for upvote, 0 for neutral
     unique_constraint = db.UniqueConstraint('message_id', 'user_id', name='unique_like_per_user')
+    message = db.relationship('Message', back_populates='likes')
 
+
+class Constants(db.Model):
+    __tablename__ = 'constants'
+
+    id = db.Column(db.Integer, primary_key=True)
+    reload = db.Column(db.Boolean, default=False)
 
 # Run this once to create the tables:
 with app.app_context():

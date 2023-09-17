@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './LoginSignup.css';
-
+import UserContext from './UserContext';
 
 
 function LoginSignup() {
     const navigate = useNavigate();
+    const { setLoggedInUser } = useContext(UserContext);
+
 
     const [isLogin, setIsLogin] = useState(true);
     const [email, setEmail] = useState("");
@@ -80,6 +82,11 @@ function LoginSignup() {
                 console.log(data)
                 localStorage.setItem('activeUserName', data.name);
                 localStorage.setItem('activeUserId', data.id);
+                setLoggedInUser({
+                    id: data.id,
+                    name: data.name,
+                    email: email
+                });
             });
             localStorage.setItem('activeUserEmail', email);
             

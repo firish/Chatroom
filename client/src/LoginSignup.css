@@ -1,0 +1,50 @@
+/* src/LoginSignup.css */
+
+body {
+    background: url('../public/login.jpg') no-repeat center center fixed; 
+    background-size: cover;
+}
+
+.error {
+    color: red;
+}
+
+.login-signup-container {
+    width: 300px;
+    margin: 100px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-signup-container h2 {
+    text-align: center;
+}
+
+.login-signup-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-signup-container form input {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.login-signup-container button {
+    padding: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.login-signup-container button:hover {
+    background-color: #0056b3;
+}

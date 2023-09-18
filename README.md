@@ -35,7 +35,7 @@ This is a robust messaging platform that allows users to communicate, share thei
 
 ## Project Structure
 
-The application's directory is structured as follows:
+The application's server directory is structured as follows:
 
 - **app.py**  
   This is the primary server file where all the routes, configurations, and server-related functionalities reside.
@@ -57,6 +57,28 @@ The application's directory is structured as follows:
 
 - **requirements.txt**  
   Contains the list of Python modules and their respective versions required for the server application.
+
+## Client Directory Structure
+
+The application's client directory is structured as follows:
+
+- **App.js / App.css**  
+  These are the main React files responsible for rendering the primary layout and components of the application.
+
+- **loginSignup.js / loginSignup.css**  
+  These files manage the login and sign-up functionalities of the application. The JavaScript file (`loginSignup.js`) contains React components and logic for user login and registration, while the CSS file (`loginSignup.css`) styles these components.
+
+- **chatroom.js / chatroom.css**  
+  Responsible for the chatroom functionality. The JavaScript file (`chatroom.js`) houses the React components and logic required for the chatroom feature, enabling users to send and receive messages. The accompanying CSS file (`chatroom.css`) provides the styling for the chatroom components.
+
+- **Dockerfile**  
+  The Docker configuration file used to containerize the client application for deployment. It packages the React application with all its dependencies into a Docker container, making it easier to deploy and run in various environments.
+
+- **client-minikube-deployment.yaml**  
+  Kubernetes configuration file tailored for deploying the containerized client application on Minikube.
+
+- **client-minikube-service.yaml**  
+  Kubernetes service configuration that exposes the client application running on Minikube to be accessible from a browser or other clients.
 
 Each file has a distinct role, ensuring smooth development, testing, deployment, and scaling of the application.
 

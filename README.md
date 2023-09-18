@@ -33,7 +33,7 @@ This is a robust messaging platform that allows users to communicate, share thei
     - Uses basic password authentication.
     - No reliance on external services for authentication.
 
-## Project Structure
+## Server Directory Structure
 
 The application's server directory is structured as follows:
 
@@ -84,9 +84,98 @@ Each file has a distinct role, ensuring smooth development, testing, deployment,
 
 
 
-## Installation & Setup
+### Deployment Guide
 
-(You can include instructions here on how to set up and run the application.)
+## Prerequisites
+
+- **Docker**: Ensure Docker is installed.
+- **Kubernetes Tools**: Ensure `kubectl` and Minikube are installed.
+- **Docker Hub**: Ensure you have a Docker Hub account.
+
+## Backend Deployment
+
+1. **Navigate to your server directory**:
+    ```bash
+    cd path/to/server
+    ```
+
+2. **Build the Docker image for the server**:
+    ```bash
+    docker build -t <YOUR-DOCKERHUB-USERNAME>/backend-service:latest .
+    ```
+
+3. **Login to Docker Hub**:
+    ```bash
+    docker login
+    ```
+
+4. **Push the image to Docker Hub**:
+    ```bash
+    docker push <YOUR-DOCKERHUB-USERNAME>/backend-service:latest
+    ```
+
+5. **Start Minikube**:
+    ```bash
+    minikube start
+    ```
+
+6. **Apply the server deployment and service configurations**:
+    ```bash
+    kubectl apply -f minikube-deployment.yaml
+    kubectl apply -f minikube-service.yaml
+    ```
+
+## Frontend Deployment
+
+1. **Navigate to your client directory**:
+    ```bash
+    cd path/to/client
+    ```
+
+2. **Build the Docker image for the frontend**:
+    ```bash
+    docker build -t <YOUR-DOCKERHUB-USERNAME>/react-client:latest .
+    ```
+
+3. **Push the frontend image to Docker Hub**:
+    ```bash
+    docker push <YOUR-DOCKERHUB-USERNAME>/react-client:latest
+    ```
+
+4. **Apply the client deployment and service configurations**:
+    ```bash
+    kubectl apply -f react-client-deployment.yaml
+    kubectl apply -f react-client-service.yaml
+    ```
+
+## Database Setup (PostgreSQL)
+
+1. **Deploy a PostgreSQL instance** in your preferred way, whether it's a Docker container, Minikube deployment, or an external database service.
+
+2. **Run `create_tables.py` to set up the database tables**:
+    ```bash
+    python create_tables.py
+    ```
+
+3. **Optionally, populate the database with mock data using `create_mock_data.py`**:
+    ```bash
+    python create_mock_data.py
+    ```
+
+## Accessing the Applications
+
+1. **To access the server application**, use the Minikube service URL:
+    ```bash
+    minikube service server-service
+    ```
+
+2. **To access the client application**, use the Minikube service URL for the react client:
+    ```bash
+    minikube service react-client-service
+    ```
+
+> **Note**: Remember to replace `<YOUR-DOCKERHUB-USERNAME>` with your actual Docker Hub username in the commands. Adjust any paths and filenames based on your actual directory structure and naming conventions.
+
 
 
 

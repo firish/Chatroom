@@ -1,0 +1,12 @@
+Author Name: Rishi Gulati
+Contact: (email) rishisg2@illinois.edu
+         (phone) +1-447-902-0902
+
+Full Stack Chatroom Challenge.
+
+Client   -> React
+Server   -> Flask
+Protocol -> REST
+Database -> PostgreSQL
+Infra    -> Minikube
+

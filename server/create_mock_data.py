@@ -46,7 +46,6 @@ def create_mock_data():
     db.session.commit()
 
     print("Constants initialized!")
-
     print("Mock data added successfully!")
 
 

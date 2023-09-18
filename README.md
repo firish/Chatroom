@@ -2,6 +2,8 @@
 
 This is a robust messaging platform that allows users to communicate, share their thoughts, and express themselves by upvoting or downvoting each message.
 
+To avoid any potential issues, I am also attaching a link to my Google Drive that has the project (https://drive.google.com/file/d/1Q2NyuBtM4_G1-gPti08ce4cKN7p4BVPG/view?usp=sharing) with node modules, Python dependencies, and database backup files included in it. 
+
 ## Features
 
 ### Frontend

@@ -1,6 +1,6 @@
 # Nimble Messaging Application
 
-Nimble is a robust messaging platform that allows users to communicate, share their thoughts, and express themselves by upvoting or downvoting each message.
+This is a robust messaging platform that allows users to communicate, share their thoughts, and express themselves by upvoting or downvoting each message.
 
 ## Features
 
@@ -33,19 +33,38 @@ Nimble is a robust messaging platform that allows users to communicate, share th
     - Uses basic password authentication.
     - No reliance on external services for authentication.
 
+## Project Structure
+
+The application's directory is structured as follows:
+
+- **app.py**  
+  This is the primary server file where all the routes, configurations, and server-related functionalities reside.
+
+- **create_tables.py**  
+  Utility script to connect to the PostgreSQL database and set up the necessary tables for the application.
+
+- **create_mock_data.py**  
+  Utility script that's used to populate the database tables with mock data to aid in testing and development.
+
+- **Dockerfile**  
+  The Docker configuration file used to containerize the server application for deployment.
+
+- **minikube-deployment.yaml**  
+  Kubernetes configuration for deploying the containerized server application on Minikube.
+
+- **minikube-service.yaml**  
+  Kubernetes service configuration to expose the server application running on Minikube.
+
+- **requirements.txt**  
+  Contains the list of Python modules and their respective versions required for the server application.
+
+Each file has a distinct role, ensuring smooth development, testing, deployment, and scaling of the application.
+
+
+
 ## Installation & Setup
 
 (You can include instructions here on how to set up and run the application.)
 
-## Usage
 
-(Here, you can provide examples of how the application can be used, or direct users to a user manual or guide.)
-
-## Contributing
-
-(If you're open to contributions, provide guidelines on how one can contribute to this project.)
-
-## License
-
-(Include details about the license, if any, that the application uses.)
 
